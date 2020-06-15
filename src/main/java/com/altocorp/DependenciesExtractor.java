@@ -16,7 +16,7 @@ import java.util.List;
 
 public class DependenciesExtractor {
 
-    public List<Dependency> extractDependecies(String fileName) {
+    public List<Dependency> extractDependecies(String fileName, String groupIdToIgnore) {
         File file = new File(fileName);
         DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
         Document document;
@@ -36,7 +36,9 @@ public class DependenciesExtractor {
         for (int i = 0; i < dependencyNodes.getLength(); i++) {
             Node dependencyNode = dependencyNodes.item(i);
             Dependency dependency = convertToDomain(dependencyNode);
-            dependencies.add(dependency);
+            if (!dependency.getGroup().contains(groupIdToIgnore)) {
+                dependencies.add(dependency);
+            }
         }
         return dependencies;
     }

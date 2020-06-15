@@ -17,7 +17,9 @@ public class DependencyDiscrepancyAssessor {
         if (dependency.getVersion().equals("")) {
             return null;
         }
+
         String forObject = restTemplate.getForObject("https://mvnrepository.com/artifact/" + dependency.getGroup() + "/" + dependency.getArtifact() + "/" + dependency.getVersion(), String.class);
+
 
         if (forObject != null) {
             int index = forObject.indexOf("There is a new version for this artifact");

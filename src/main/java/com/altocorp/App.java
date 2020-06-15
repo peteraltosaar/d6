@@ -17,6 +17,7 @@ public class App
 
     public static void main( String[] args ) throws InterruptedException {
         String fileName = args[0];
+        String groupIdToIgnore = args[1];
         System.out.println("Your file name is: " + fileName);
         boolean fileExtensionIsXML = fileTypeValidator.fileIsXML(fileName);
         System.out.println("File extension is valid: " + fileExtensionIsXML);
@@ -25,7 +26,7 @@ public class App
             return;
         }
 
-        List<Dependency> dependencies = dependenciesExtractor.extractDependecies(fileName);
+        List<Dependency> dependencies = dependenciesExtractor.extractDependecies(fileName, groupIdToIgnore);
 
         System.out.println("Number of dependencies: " + dependencies.size());
 
